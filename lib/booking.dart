@@ -1,8 +1,8 @@
-//import 'dart:convert';
+import 'dart:convert';
 
-//List<Booking> bookingFromMap(String str) => List<Booking>.from(json.decode(str).map((x) => Booking.fromMap(x)));
+List<Booking> bookingFromMap(String str) => List<Booking>.from(json.decode(str).map((x) => Booking.fromJson(x)));
 
-//String bookingToMap(List<Booking> data) => json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
+String bookingToMap(List<Booking> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Booking {
   String orderID;
