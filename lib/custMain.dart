@@ -147,7 +147,7 @@ class _CMenuPage extends State<CMenuPage>{
                                       padding: const EdgeInsets.all(10.0),
                                       child: GestureDetector(
                                         onTap: () {
-                                          //Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
+                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
                                         },
                                         child: Image(
                                           image: AssetImage('images/delivery.png'),
@@ -158,7 +158,7 @@ class _CMenuPage extends State<CMenuPage>{
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        //Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
                                       },
                                       child: Text (
                                         "Order Status",
