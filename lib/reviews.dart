@@ -4,6 +4,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 //import 'package:get/get.dart';
 import 'mngrMain.dart';
+import 'five_star.dart';
+import 'four_star.dart';
+import 'three_star.dart';
+import 'two_star.dart';
 
 class ReviewsPage extends StatefulWidget {
   const ReviewsPage({Key? key}) : super(key: key);
@@ -26,7 +30,6 @@ class _ReviewsPageState extends State<ReviewsPage> {
       //return json.decode(response.body);
       return revlist;
     }
-
   }
 
   @override
@@ -55,36 +58,233 @@ class _ReviewsPageState extends State<ReviewsPage> {
         backgroundColor: Colors.blue[500],
       ),
 
-      body: FutureBuilder(
-          future: getRevlist(),
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
-            return snapshot.hasData
-                ? ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.grey[200],
-                    margin: EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.only(left: 30.0, right: 20.0),
-                      title: Text(
-                        revlist[index]['_rating'] + " stars",
-                        style: TextStyle(fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey[900]),),
-                      subtitle: Text(revlist[index]['comment'],
-                        style: TextStyle(fontSize: 16, color:Colors.blueGrey[900]),),
-                      /*trailing: GestureDetector(child: Icon(Icons.arrow_forward_ios, color: Colors.black),
-                        onTap: (){
-                          //Navigator.push(context, MaterialPageRoute(builder: (context) => ViewOrder(orderlist: orderlist, index: index,),),);
-                        },),*/
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.only(top:10, left:10, right:10),
+          child: Column(
+            children: [
+              FutureBuilder(
+                  future: getRevlist(),
+                  builder: (context, AsyncSnapshot snapshot){
+                    return Text("Total Customer Reviews : ${revlist.length}",
+                      style: TextStyle(
+                      ),);
+                  }),
+
+              SizedBox(height: 50,),
+              Center(
+                child: Container(
+                  //navigate to order page
+                  width: 250,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          Colors.green.withOpacity(0.8),
+                          Colors.lightGreenAccent.withOpacity(0.6),
+                        ],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.centerRight
                     ),
-                  );
-                }
-            ) : CircularProgressIndicator();
-          }
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      bottomLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
+                    ),
+                  ),
+
+                  child: Container (
+                    padding: const EdgeInsets.only(top: 15),
+                    child: Column (
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>FiveStar()));
+                          },
+                          child: Text (
+                            "5 Stars",
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: 250,
+                height: 65,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.blue.withOpacity(0.8),
+                        Colors.lightBlueAccent.withOpacity(0.6),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.centerRight
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: Container (
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Column (
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>FourStar()));
+                        },
+                        child: Text (
+                          "4 Stars",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: 250,
+                height: 65,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.yellow.withOpacity(0.8),
+                        Colors.yellowAccent.withOpacity(0.6),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.centerRight
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: Container (
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Column (
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ThreeStar()));
+                        },
+                        child: Text (
+                          "3 Stars",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: 250,
+                height: 65,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.orange.withOpacity(0.8),
+                        Colors.orangeAccent.withOpacity(0.6),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.centerRight
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: Container (
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Column (
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>TwoStar()));
+                        },
+                        child: Text (
+                          "2 Stars",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 15,),
+              Container(
+                width: 250,
+                height: 65,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Colors.deepOrange.withOpacity(0.8),
+                        Colors.deepOrangeAccent.withOpacity(0.6),
+                      ],
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.centerRight
+                  ),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    bottomLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                    bottomRight: Radius.circular(30),
+                  ),
+                ),
+                child: Container (
+                  padding: const EdgeInsets.only(top: 15),
+                  child: Column (
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewsPage()));
+                        },
+                        child: Text (
+                          "1 Star",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w500
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
+
     );
   }
 }
