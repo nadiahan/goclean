@@ -1,5 +1,7 @@
+
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'customer_order_page2.dart';
 import 'custMain.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -38,7 +40,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
   var idController = new TextEditingController();
   String orderID = '';
 
-  void userSubmit() async{
+  /*void userSubmit() async{
 
     // Showing CircularProgressIndicator.
     setState(() {
@@ -80,7 +82,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
         );
       },
     );
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +162,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                         style: TextStyle(fontSize: 13),
                       ),
 
-                      /*new Radio(
+                      new Radio(
                         value: 'DELIVERY',
                         groupValue: serviceName,
                         onChanged: (val){
@@ -173,7 +175,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                       Text(
                         'DELIVERY',
                         style: TextStyle(fontSize: 13),
-                      ),*/
+                      ),
 
                       new Radio(
                         value: 'BOTH',
@@ -333,16 +335,22 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                   ),
 
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(250, 10, 20, 10),
-                    child: RaisedButton(
-                      onPressed: (){
-                        userSubmit();
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CMenuPage()));
+                    padding: const EdgeInsets.fromLTRB(260, 10, 20, 10),
+                    child: TextButton.icon(
+                      onPressed: () {
+                        setAttributes(idController.text,orderDateController.text,orderTimeController.text,cleanNameController.text,serviceController.text,addressController.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderDetails2()));
                       },
-                      child: Text('Submit'),
-                      textColor: Colors.white,
-                      color: Colors.lightBlue,
-                      focusColor: Colors.blue,
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          Colors.blue.withOpacity(0.1),
+                        ),
+                      ),
+                      label: Text(
+                        'NEXT',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      icon: Icon(Icons.chevron_right),
                     ),
                   ),
 
@@ -357,9 +365,17 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
   void getEmail() async{
     final SharedPreferences pref = await SharedPreferences.getInstance();
     emailValue = pref.getString('emailData');
-    setState((){
+    setState((){});
+  }
 
-    });
+  Future<void> setAttributes(id, orderDate, orderTime, cleanName, serviceName, newAddress) async{
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString('id', id);
+    pref.setString('orderDate', orderDate);
+    pref.setString('orderTime', orderTime);
+    pref.setString('cleanName', cleanName);
+    pref.getString('serviceName');
+    pref.getString('newAddress');
   }
 
 }
