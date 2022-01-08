@@ -160,7 +160,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                         style: TextStyle(fontSize: 13),
                       ),
 
-                      new Radio(
+                      /*new Radio(
                         value: 'DELIVERY',
                         groupValue: serviceName,
                         onChanged: (val){
@@ -173,7 +173,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                       Text(
                         'DELIVERY',
                         style: TextStyle(fontSize: 13),
-                      ),
+                      ),*/
 
                       new Radio(
                         value: 'BOTH',
