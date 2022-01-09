@@ -74,6 +74,7 @@ class _ServicePageState extends State<ServicePage> {
           ),
         ],
       ),
+      backgroundColor: Colors.blue[50],
       body: FutureBuilder(
           future: getService(),
           builder: (context,AsyncSnapshot snapshot){

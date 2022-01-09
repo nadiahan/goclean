@@ -60,5 +60,12 @@ flutter:
     - images/delivery.png
     - images/clipboard.png
     - images/logistic.png
+    - images/orderlist.png
+    - images/service detail.png
+    - images/laundrette.png
+    - images/review.png
+    - images/service.png
+    - images/material.png
+    - images/cleaning.png
 
 
