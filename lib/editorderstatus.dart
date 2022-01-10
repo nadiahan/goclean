@@ -54,7 +54,7 @@ class _EditOrderStatus extends State<EditOrderStatus>{
                 new TextField(
                   controller: statusController,
                   decoration: new InputDecoration(
-                    labelText: "Order Status"
+                    labelText: "Order status"
                   )
                 ),
                 new Padding(
@@ -63,7 +63,7 @@ class _EditOrderStatus extends State<EditOrderStatus>{
                 new TextField(
                     controller: timeController,
                     decoration: new InputDecoration(
-                        labelText: "Status Time"
+                        labelText: "Status time"
                     )
                 ),
                 new Padding(
