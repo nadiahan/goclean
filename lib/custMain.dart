@@ -5,6 +5,7 @@ import 'package:goclean/about_us_page.dart';
 import 'package:goclean/customer_view_status.dart';
 import 'package:goclean/view_my_order.dart';
 import 'custLaundrette.dart';
+import 'cust_view_list.dart';
 import 'customer_order_page.dart';
 import 'userpage.dart';
 import 'main.dart';
@@ -147,7 +148,7 @@ class _CMenuPage extends State<CMenuPage>{
                                       padding: const EdgeInsets.all(10.0),
                                       child: GestureDetector(
                                         onTap: () {
-                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
+                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewList()));
                                         },
                                         child: Image(
                                           image: AssetImage('images/delivery.png'),
@@ -158,7 +159,7 @@ class _CMenuPage extends State<CMenuPage>{
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewList()));
                                       },
                                       child: Text (
                                         "Order Status",
