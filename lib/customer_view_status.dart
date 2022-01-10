@@ -8,188 +8,196 @@ import 'package:http/http.dart' as http;
 import 'package:goclean/booking-api.dart';
 import 'booking.dart';
 import 'package:goclean/user-api.dart';
+import 'cust_view_list.dart';
 import 'user.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'customer_order_page.dart';
 
 class CustomerViewStatus extends StatefulWidget{
+
+  final List orderlist;
+  final int index;
+  CustomerViewStatus({required this.orderlist, required this.index});
   @override
   _CustomerViewStatusState createState() => _CustomerViewStatusState();
 }
 
-class _CustomerViewStatusState extends State<CustomerViewStatus> with TickerProviderStateMixin{
+class _CustomerViewStatusState extends State<CustomerViewStatus> with TickerProviderStateMixin {
 
   String? emailValue;
-  bool result = false;
   static const url = 'http://goclean5yeoja.com/cust_view_status.php';
-  List productList = [];
+  var idController = new TextEditingController();
 
-
-  getAllProduct() async {
-    var response = await http.post(Uri.parse(url));
-    if (response.statusCode == 200) {
-      setState(() {
-        productList = json.decode(response.body);
-      });
-      print(productList);
-      return productList;
-    }
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 230,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(50),
-                  bottomRight: Radius.circular(50),
-                ),
-              ),
-              child: Align(
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: Column(
-                    mainAxisAlignment : MainAxisAlignment.center,
-                    children: [
-                      new Align(alignment: Alignment.center,
-                          child:
-                          new Text("Order Tracker",
-                            style: TextStyle(fontSize: 32),)
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(70, 30, 60, 0),
-                        child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT6Yc_N3xC9akfMD4yRs9kwCBKoaRrie9z-Rg&usqp=CAU",
-                          height: 150,
-                        ),
-                      ),
-
-                      /*Text(
-                        "Result : ",
-                        style: TextStyle(fontSize: 25),
-                      ),*/
-
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 50,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 35.0),
-                            child: Text(
-                              "ID Number: ",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(30, 0, 20, 0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 60,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: TextField(
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(borderSide: BorderSide.none),
-                                      hintText: "e.g #123456",
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 30,
-                                ),
-                                GestureDetector(
-                                  onTap:(){
-                                    setState(() {
-                                      result=true;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.search,
-                                    size: 35,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          result? Padding(
-                            padding: const EdgeInsets.fromLTRB(35, 2, 31, 0),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Result : ",
-                                  style: TextStyle(fontSize: 25),
-                                ),
-                                Spacer(),
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      result=true;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.close,
-                                    size: 25,
-                                  ),
-                                )
-                              ],
-                            ),
-                          )
-                              :SizedBox(),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          result? Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 2, 15, 0),
-                            child:
-                            ListView.builder(
-                                itemCount: productList.length,
-                                itemBuilder: (context, index) {
-                                  return ListTile(
-                                    leading: Text(productList[index]['orderStatus']),
-                                    title: Text(productList[index]['statusTime']),
-                                  );
-                                }),
-                          )
-                              : Transform(
-                            transform: Matrix4.translationValues(0, -50, 0),
-                            child: Lottie.network(
-                                "https://assets2.lottiefiles.com/packages/lf20_t24tpvcu.json"
-                            ),
-                          ),
-                        ],
-                      ),
-
-
-                    ],
-                  ),
-              ),
-            ),
-            ),
-          ],
+      /*appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        title: Text("Order #${widget.booking.orderID}",
+          style: TextStyle(
+              fontSize: 27,
+              fontWeight: FontWeight.w500
+          ),
         ),
-      ),
-      );
-  }
+        backgroundColor: Colors.blue[500],
+        /*actions: <Widget> [
+        ], */
+      ),*/
+      body: Stack(
+        children: <Widget>[
+          SingleChildScrollView (
+            //Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 10,),
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (
+                            context) => CustomerViewList()));
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        size: 30,
+                        color: Colors.blue[500],
+                      ),
+                    ),
+                    SizedBox(width: 80,),
+                    Text(
+                      "Order #" +  widget.orderlist[widget.index]['orderID'],
+                      style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.blue[500],
+                          fontWeight: FontWeight.w700
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  height: 1,
+                  color: Colors.grey,
+                ),
 
+                Center (
+                  child: Text(
+                    widget.orderlist[widget.index]['orderStatus'],
+                    style: TextStyle(
+                        fontSize: 28, color: Colors.green),
+                  ),
+                ),
+                Center (
+                  child: Text(
+                    widget.orderlist[widget.index]['statusTime'],
+                    style: TextStyle(
+                        fontSize: 20, color: Colors.black26),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  height: 1,
+                  color: Colors.grey,
+                ),
+                SizedBox(height: 5,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Order Date : " +  widget.orderlist[widget.index]['orderDate'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Order Time : " +  widget.orderlist[widget.index]['orderTime'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Customer Name : " +  widget.orderlist[widget.index]['name'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Address : " +  widget.orderlist[widget.index]['address'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Phone No. : " +  widget.orderlist[widget.index]['phonenum'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "New Address : " +  widget.orderlist[widget.index]['newAddress'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Service Details : " +  widget.orderlist[widget.index]['serviceName'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Cleaning Type : " +  widget.orderlist[widget.index]['cleanName'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Materials : " +  widget.orderlist[widget.index]['materialName'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Total Price : RM " +  widget.orderlist[widget.index]['totalPrice'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+
+                //button for update total price
+
+
+              ],
+            ),
+            //),
+          ),
+        ],
+      ),
+    );
+  }
 }
