@@ -16,12 +16,14 @@ class EditOrderStatus extends StatefulWidget{
 class _EditOrderStatus extends State<EditOrderStatus>{
 
   late TextEditingController statusController;
+  late TextEditingController timeController;
 
   void editData(){
     http.post(Uri.parse("http://goclean5yeoja.com/editstatus.php"),
       body: {
       "orderID":widget.list[widget.index]["orderID"],
-        "orderStatus":statusController.text
+        "orderStatus":statusController.text,
+        "statusTime":timeController.text,
       }
     );
   }
@@ -29,6 +31,7 @@ class _EditOrderStatus extends State<EditOrderStatus>{
   @override
   void initState() {
     statusController = new TextEditingController(text: widget.list[widget.index]['orderStatus']);
+    timeController = new TextEditingController(text: widget.list[widget.index]['statusTime']);
     super.initState();
   }
 
@@ -51,8 +54,17 @@ class _EditOrderStatus extends State<EditOrderStatus>{
                 new TextField(
                   controller: statusController,
                   decoration: new InputDecoration(
-                    labelText: "Order Status"
+                    labelText: "Order status"
                   )
+                ),
+                new Padding(
+                  padding: const EdgeInsets.all(10.0),
+                ),
+                new TextField(
+                    controller: timeController,
+                    decoration: new InputDecoration(
+                        labelText: "Status time"
+                    )
                 ),
                 new Padding(
                   padding: const EdgeInsets.all(10.0),
