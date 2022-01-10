@@ -300,7 +300,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
             ),
 
             Padding(
-              padding: const EdgeInsets.fromLTRB(12, 5, 0, 0),
+              padding: const EdgeInsets.fromLTRB(12, 5, 0, 4),
               child: new Text(
                 "Approximate weight:",
                 style: TextStyle(
@@ -309,9 +309,28 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+              child: new Text(
+                "First 5kg or less = RM10",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.blueGrey,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+              child: new Text(
+                "Every subsequent kg = RM1.50",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.blueGrey,
+                ),
+              ),
+            ),
 
             Container(
-              padding: new EdgeInsets.all(10.0),
               child: Column(
                 children: [
                   new Row(
@@ -327,13 +346,13 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                         },
                       ),
                       Text(
-                        'CLOTHES>5KG',
+                        'CLOTHES > 5KG',
                         style: TextStyle(fontSize: 13),
                       ),
 
 
                       new Radio(
-                        value: 'CLOTHES<5KG',
+                        value: 'CLOTHES<=5KG',
                         groupValue: materialName,
                         onChanged: (val){
                           materialName = val.toString();
@@ -343,7 +362,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                         },
                       ),
                       Text(
-                        'CLOTHES<5KG',
+                        'CLOTHES <= 5KG',
                         style: TextStyle(fontSize: 13),
                       ),
                     ],
@@ -409,6 +428,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                     padding: const EdgeInsets.fromLTRB(250, 10, 20, 10),
                     child: RaisedButton(
                       onPressed: (){
+                        setId(idController.text);
                         userSubmit();
                         Navigator.push(context,MaterialPageRoute(builder: (context)=> CMenuPage()));
                       },
@@ -433,14 +453,9 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
     setState((){});
   }
 
-  Future<void> setAttributes(id, orderDate, orderTime, cleanName, serviceName, newAddress) async{
+  Future<void> setId(id) async{
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('id', id);
-    pref.setString('orderDate', orderDate);
-    pref.setString('orderTime', orderTime);
-    pref.setString('cleanName', cleanName);
-    pref.getString('serviceName');
-    pref.getString('newAddress');
   }
 
 }
