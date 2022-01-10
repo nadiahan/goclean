@@ -41,6 +41,10 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
   String orderID = '';
   String materialName='';
   var materialNameController = new TextEditingController();
+  String orderStatus='SENT';
+  String statusTime='00:00:00';
+  String totalPrice='0';
+
 
   void userSubmit() async{
 
@@ -61,7 +65,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
 
     var url = 'http://goclean5yeoja.com/insertBooking.php';
 
-    var data = {'id':id, 'orderDate':orderDate, 'orderTime':orderTime, 'cleanName':cleanName, 'serviceName':serviceName, 'newAddress':newAddress, 'materialName':materialName};
+    var data = {'id':id, 'orderDate':orderDate, 'orderTime':orderTime, 'cleanName':cleanName, 'serviceName':serviceName, 'newAddress':newAddress, 'materialName':materialName, 'orderStatus':orderStatus, 'statusTime':statusTime, 'totalPrice':totalPrice};
     // Starting Web API Call.
     var response = await http.post(Uri.parse(url),body:json.encode(data));
     // Getting Server response into variable.
