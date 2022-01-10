@@ -71,6 +71,7 @@ class _MatPageState extends State<MatPage> {
           ),
         ],
       ),
+      backgroundColor: Colors.blue[50],
       body: FutureBuilder(
           future: getMaterial(),
           builder: (context,AsyncSnapshot snapshot){

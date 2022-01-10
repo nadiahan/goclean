@@ -72,6 +72,7 @@ class _CleanPageState extends State<CleanPage> {
           ),
         ],
       ),
+      backgroundColor: Colors.blue[50],
       body: FutureBuilder(
           future: getClean(),
           builder: (context,AsyncSnapshot snapshot){
