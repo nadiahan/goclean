@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:goclean/booking.dart';
 import 'view_order_list.dart';
 import 'update_order_status.dart';
+import 'update_price.dart';
 
 class ViewOrder extends StatefulWidget {
   //const ViewOrder({Key? key}) : super(key: key);
@@ -18,23 +19,6 @@ class ViewOrder extends StatefulWidget {
 }
 
 class _ViewOrderState extends State<ViewOrder> {
-
-  /*updateStatus() {
-    var url = 'http://goclean5yeoja.com/serviceDetail/update_order_status.php';
-    http.post(Uri.parse(url),body: {
-      'orderID': widget.orderlist[widget.index]['orderID'],
-      'orderStatus': status.text,
-    });
-    Fluttertoast.showToast(
-        msg: "Status Updated!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity:ToastGravity.CENTER,
-        timeInSecForIosWeb: 2,
-        backgroundColor: Colors.white,
-        textColor: Colors.red,
-        fontSize: 16
-    );
-  }*/
 
   @override
   void initState() {
@@ -100,7 +84,14 @@ class _ViewOrderState extends State<ViewOrder> {
                   child: Text(
                     widget.orderlist[widget.index]['orderStatus'],
                     style: TextStyle(
-                        fontSize: 22, color: Colors.green),
+                        fontSize: 28, color: Colors.green),
+                  ),
+                ),
+                Center (
+                  child: Text(
+                    widget.orderlist[widget.index]['statusTime'],
+                    style: TextStyle(
+                        fontSize: 20, color: Colors.black26),
                   ),
                 ),
                 Container(
@@ -108,7 +99,7 @@ class _ViewOrderState extends State<ViewOrder> {
                   height: 1,
                   color: Colors.grey,
                 ),
-                SizedBox(height: 3,),
+                SizedBox(height: 5,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -116,7 +107,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -124,7 +115,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -132,7 +123,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -140,7 +131,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -148,7 +139,15 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "New Address : " +  widget.orderlist[widget.index]['newAddress'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -156,7 +155,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -164,7 +163,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -172,7 +171,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -217,6 +216,47 @@ class _ViewOrderState extends State<ViewOrder> {
                                 ),
                               ),
                             ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15,),
+                //button for update total price
+                Container(
+                  width: 270,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                  child: Container (
+                    padding: const EdgeInsets.only(top: 5, left:35),
+                    child: Column (
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                              new MaterialPageRoute(
+                                builder: (BuildContext context)=>new UpdatePrice(orderlist: widget.orderlist, index: widget.index),),);
+                              },
+                              child: Text (
+                                "Update Total Price",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w500
+                                ),
+                              ),
+                            ),
 
                           ],
                         ),
@@ -224,6 +264,7 @@ class _ViewOrderState extends State<ViewOrder> {
                     ),
                   ),
                 ),
+
               ],
             ),
             //),

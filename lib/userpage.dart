@@ -19,6 +19,7 @@ class _UserPage extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text('Profile Page'),
         backgroundColor: Colors.blue[500],
         // actions: <Widget>[

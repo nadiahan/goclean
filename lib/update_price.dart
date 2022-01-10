@@ -6,47 +6,44 @@ import 'package:goclean/booking.dart';
 import 'view_order_list.dart';
 import 'view_one_order.dart';
 
-
-class UpdateOrder extends StatefulWidget {
-  //const UpdateOrder({Key? key}) : super(key: key);
+class UpdatePrice extends StatefulWidget {
+  //const UpdatePrice({Key? key}) : super(key: key);
 
   final List orderlist;
   final int index;
-  UpdateOrder({required this.orderlist, required this.index});
+  UpdatePrice({required this.orderlist, required this.index});
 
   @override
-  _UpdateOrderState createState() => _UpdateOrderState();
+  _UpdatePriceState createState() => _UpdatePriceState();
 }
 
-class _UpdateOrderState extends State<UpdateOrder> {
+class _UpdatePriceState extends State<UpdatePrice> {
 
   final _formKey = GlobalKey<FormState>();
-  late String txtstatus;
-  late String txttime;
-  TextEditingController status = new TextEditingController();
-  TextEditingController time = new TextEditingController();
+  late String txttotal;
+  TextEditingController total = new TextEditingController();
 
-  updateStatus() {
-      var url = 'http://goclean5yeoja.com/update_order_status.php';
-      http.post(Uri.parse(url),body: {
-        'orderID': widget.orderlist[widget.index]['orderID'],
-        'orderStatus': status.text,
-        'statusTime': time.text,
-      });
-      Fluttertoast.showToast(
-          msg: "Status Updated!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity:ToastGravity.CENTER,
-          timeInSecForIosWeb: 2,
-          backgroundColor: Colors.white,
-          textColor: Colors.red,
-          fontSize: 16
-      );}
+  updatePrice() {
+    var url = 'http://goclean5yeoja.com/update_price.php';
+    //int totalP = widget.orderlist[widget.index]['servicePrice'] + widget.orderlist[widget.index]['cleanPrice'] + widget.orderlist[widget.index]['materialPrice'];
+    http.post(Uri.parse(url),body: {
+      'orderID': widget.orderlist[widget.index]['orderID'],
+      'totalPrice': total.text,
+
+    });
+    Fluttertoast.showToast(
+        msg: "Price Updated!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity:ToastGravity.CENTER,
+        timeInSecForIosWeb: 2,
+        backgroundColor: Colors.white,
+        textColor: Colors.red,
+        fontSize: 16
+    );}
 
   @override
   void initState() {
-    status.text = widget.orderlist[widget.index]['orderStatus'];
-    time.text = widget.orderlist[widget.index]['statusTime'];
+    total.text = widget.orderlist[widget.index]['totalPrice'];
     super.initState();
   }
 
@@ -70,7 +67,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                     InkWell(
                       onTap:(){
                         Navigator.of(context).push(
-                            new MaterialPageRoute(
+                          new MaterialPageRoute(
                             builder: (BuildContext context)=>new ViewOrder(orderlist: widget.orderlist, index: widget.index),),);
                       },
                       child: Icon(
@@ -81,7 +78,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                     ),
                     SizedBox(width: 26),
                     Text(
-                      "Update Order Status",
+                      "Update Total Price",
                       style: TextStyle(
                           fontSize: 30,
                           color: Colors.blue[500],
@@ -106,21 +103,12 @@ class _UpdateOrderState extends State<UpdateOrder> {
                           child:Column(
                             children: <Widget>[
                               TextFormField(
-                                controller: status,
-                                decoration: InputDecoration(labelText:'Order Status',
+                                controller: total,
+                                decoration: InputDecoration(labelText:'Total Price (RM 00.00)',
                                 ),
                                 keyboardType: TextInputType.text,
                                 onSaved: (value){
-                                  txtstatus = value!;
-                                },
-                              ),
-                              TextFormField(
-                                controller: time,
-                                decoration: InputDecoration(labelText:'Status Change Time (hh:mm:ss)',
-                                ),
-                                keyboardType: TextInputType.text,
-                                onSaved: (value){
-                                  txttime = value!;
+                                  txttotal = value!;
                                 },
                               ),
                               SizedBox(height:20,),
@@ -152,7 +140,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                           children: [
                             InkWell(
                               onTap: () {
-                                updateStatus();
+                                updatePrice();
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => OrderListPage()));
                               },
                               child: Text (
