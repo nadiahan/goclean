@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:async';
 //import 'package:get/get.dart';
 import 'mngrMain.dart';
 import 'reviews.dart';
@@ -55,17 +56,20 @@ class _FiveStarState extends State<FiveStar> {
         backgroundColor: Colors.blue[500],
       ),
 
-      body: Row(children: [
-        Expanded(
+      body: Column (children: [
+        SizedBox(height: 10,),
+        Flexible(
           child: FutureBuilder(
               future: getRevlist(),
               builder: (context, snapshot) {
-                return Text("Total Customer Reviews : ${revlist.length}",
+                return Text("Total 5 Star Reviews : ${revlist.length}",
                   style: TextStyle(
+                      fontSize: 18, color:Colors.blueGrey[900]
                   ),);
               }),
         ),
-        Expanded(
+
+        Flexible(
           child: FutureBuilder(
               future: getRevlist(),
               builder: (context, AsyncSnapshot snapshot) {
@@ -94,7 +98,12 @@ class _FiveStarState extends State<FiveStar> {
           ),
         ),
       ]),
-      /*
+
+    );
+  }
+}
+
+/*
       body: FutureBuilder(
           future: getRevlist(),
           builder: (context, AsyncSnapshot snapshot) {
@@ -121,6 +130,3 @@ class _FiveStarState extends State<FiveStar> {
             ) : CircularProgressIndicator();
           }
       ),*/
-    );
-  }
-}
