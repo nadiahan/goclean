@@ -120,7 +120,7 @@ class _DetailState extends State<Detail>{
                               builder: (BuildContext context)=>new EditOrderStatus(list: widget.list, index: widget.index),
                           )
                         ),
-                        child: new Text("Update Order Status"),
+                        child: new Text("Update order status"),
                         style:ElevatedButton.styleFrom(
                         primary: Colors.blue[500],
                       ),
