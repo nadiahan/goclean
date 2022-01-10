@@ -55,36 +55,48 @@ class _TwoStarState extends State<TwoStar> {
         backgroundColor: Colors.blue[500],
       ),
 
-      body: FutureBuilder(
-          future: getRevlist(),
-          builder: (context, AsyncSnapshot snapshot) {
-            if (snapshot.hasError) print(snapshot.error);
-            return snapshot.hasData
-                ? ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    color: Colors.grey[200],
-                    margin: EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
-                    child: ListTile(
-                      contentPadding: EdgeInsets.only(left: 30.0, right: 20.0),
-                      title: Text(
-                        revlist[index]['_rating'] + " stars",
-                        style: TextStyle(fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueGrey[900]),),
-                      subtitle: Text(revlist[index]['comment'],
-                        style: TextStyle(fontSize: 16, color:Colors.blueGrey[900]),),
-                      /*trailing: GestureDetector(child: Icon(Icons.arrow_forward_ios, color: Colors.black),
-                        onTap: (){
-                          //Navigator.push(context, MaterialPageRoute(builder: (context) => ViewOrder(orderlist: orderlist, index: index,),),);
-                        },),*/
-                    ),
-                  );
-                }
-            ) : CircularProgressIndicator();
-          }
-      ),
+      body: Column (children: [
+        SizedBox(height: 10,),
+        Flexible(
+          child: FutureBuilder(
+              future: getRevlist(),
+              builder: (context, snapshot) {
+                return Text("Total 2 Star Reviews : ${revlist.length}",
+                  style: TextStyle(
+                      fontSize: 18, color:Colors.blueGrey[900]
+                  ),);
+              }),
+        ),
+
+        Flexible(
+          child: FutureBuilder(
+              future: getRevlist(),
+              builder: (context, AsyncSnapshot snapshot) {
+                if (snapshot.hasError) print(snapshot.error);
+                return snapshot.hasData
+                    ? ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return Card(
+                        color: Colors.grey[200],
+                        margin: EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
+                        child: ListTile(
+                          contentPadding: EdgeInsets.only(left: 30.0, right: 20.0),
+                          title: Text(
+                            revlist[index]['_rating'] + " stars",
+                            style: TextStyle(fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blueGrey[900]),),
+                          subtitle: Text(revlist[index]['comment'],
+                            style: TextStyle(fontSize: 16, color:Colors.blueGrey[900]),),
+                        ),
+                      );
+                    }
+                ) : CircularProgressIndicator();
+              }
+          ),
+        ),
+      ]),
     );
   }
 }

@@ -78,7 +78,7 @@ class _OrderListPageState extends State<OrderListPage> {
                         style: TextStyle(fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: Colors.blueGrey[900]),),
-                      subtitle: Text(orderlist[index]['orderStatus'],
+                      subtitle: Text(orderlist[index]['orderDate'] + " / " + orderlist[index]['orderTime'],
                         style: TextStyle(fontSize: 16, color:Colors.blueGrey[900]),),
                       trailing: GestureDetector(child: Icon(Icons.arrow_forward_ios, color: Colors.black),
                         onTap: (){

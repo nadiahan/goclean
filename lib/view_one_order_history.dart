@@ -74,6 +74,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     ),
                   ],
                 ),
+
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   height: 1,
@@ -84,15 +85,17 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                   child: Text(
                     widget.orderhist[widget.index]['orderStatus'],
                     style: TextStyle(
-                        fontSize: 22, color: Colors.green),
+                        fontSize: 26, color: Colors.green),
                   ),
                 ),
+
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   height: 1,
                   color: Colors.grey,
                 ),
-                SizedBox(height: 3,),
+
+                SizedBox(height: 5,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -100,7 +103,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -108,7 +111,8 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
+
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -116,7 +120,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -124,7 +128,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -132,7 +136,15 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "New Address : " +  widget.orderhist[widget.index]['newAddress'],
+                    style: TextStyle(
+                        fontSize: 18, color: Colors.blueGrey[900]),
+                  ),),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -140,7 +152,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -148,7 +160,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
@@ -156,7 +168,7 @@ class _ViewOneOrderState extends State<ViewOneOrder> {
                     style: TextStyle(
                         fontSize: 18, color: Colors.blueGrey[900]),
                   ),),
-                SizedBox(height: 5,),
+                SizedBox(height: 8,),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(

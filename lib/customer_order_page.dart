@@ -39,8 +39,14 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
   String id = '';
   var idController = new TextEditingController();
   String orderID = '';
+  String materialName='';
+  var materialNameController = new TextEditingController();
+  String orderStatus='SENT';
+  String statusTime='00:00:00';
+  String totalPrice='0';
 
-  /*void userSubmit() async{
+
+  void userSubmit() async{
 
     // Showing CircularProgressIndicator.
     setState(() {
@@ -54,11 +60,12 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
     orderDate = orderDateController.text;
     orderTime = orderTimeController.text;
     cleanName = cleanNameController.text;
+    materialName = materialNameController.text;
     newAddress = addressController.text;
 
     var url = 'http://goclean5yeoja.com/insertBooking.php';
 
-    var data = {'id':id, 'orderDate':orderDate, 'orderTime':orderTime, 'cleanName':cleanName, 'serviceName':serviceName, 'newAddress':newAddress};
+    var data = {'id':id, 'orderDate':orderDate, 'orderTime':orderTime, 'cleanName':cleanName, 'serviceName':serviceName, 'newAddress':newAddress, 'materialName':materialName, 'orderStatus':orderStatus, 'statusTime':statusTime, 'totalPrice':totalPrice};
     // Starting Web API Call.
     var response = await http.post(Uri.parse(url),body:json.encode(data));
     // Getting Server response into variable.
@@ -82,7 +89,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
         );
       },
     );
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,20 +169,6 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                         style: TextStyle(fontSize: 13),
                       ),
 
-                      new Radio(
-                        value: 'DELIVERY',
-                        groupValue: serviceName,
-                        onChanged: (val){
-                          serviceName = val.toString();
-                          setState(() {
-                            serviceController = new TextEditingController(text: serviceName);
-                          });
-                        },
-                      ),
-                      Text(
-                        'DELIVERY',
-                        style: TextStyle(fontSize: 13),
-                      ),
 
                       new Radio(
                         value: 'BOTH',
@@ -242,6 +235,16 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 4, 0, 0),
+              child: new Text(
+                "Clean method:",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.lightBlue[500],
+                ),
+              ),
+            ),
             Container(
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
@@ -300,6 +303,77 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 5, 0, 4),
+              child: new Text(
+                "Approximate weight:",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.lightBlue[500],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+              child: new Text(
+                "First 5kg or less = RM10",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.blueGrey,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
+              child: new Text(
+                "Every subsequent kg = RM1.50",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.blueGrey,
+                ),
+              ),
+            ),
+
+            Container(
+              child: Column(
+                children: [
+                  new Row(
+                    children: <Widget>[
+                      new Radio(
+                        value: 'CLOTHES>5KG',
+                        groupValue: materialName,
+                        onChanged: (val){
+                          materialName = val.toString();
+                          setState(() {
+                            materialNameController = new TextEditingController(text: materialName);
+                          });
+                        },
+                      ),
+                      Text(
+                        'CLOTHES > 5KG',
+                        style: TextStyle(fontSize: 13),
+                      ),
+
+
+                      new Radio(
+                        value: 'CLOTHES<=5KG',
+                        groupValue: materialName,
+                        onChanged: (val){
+                          materialName = val.toString();
+                          setState(() {
+                            materialNameController = new TextEditingController(text: materialName);
+                          });
+                        },
+                      ),
+                      Text(
+                        'CLOTHES <= 5KG',
+                        style: TextStyle(fontSize: 13),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
 
             Container(
               padding: new EdgeInsets.all(10.0),
@@ -334,7 +408,7 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                     ),
                   ),
 
-                  Padding(
+                  /*Padding(
                     padding: const EdgeInsets.fromLTRB(260, 10, 20, 10),
                     child: TextButton.icon(
                       onPressed: () {
@@ -352,6 +426,21 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
                       ),
                       icon: Icon(Icons.chevron_right),
                     ),
+                  ),*/
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(250, 10, 20, 10),
+                    child: RaisedButton(
+                      onPressed: (){
+                        setId(idController.text);
+                        userSubmit();
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CMenuPage()));
+                      },
+                      child: Text('Submit'),
+                      textColor: Colors.white,
+                      color: Colors.lightBlue,
+                      focusColor: Colors.blue,
+                    ),
                   ),
 
                 ],
@@ -368,14 +457,9 @@ class _CustomerOrderPageState extends State<CustomerOrderPage>{
     setState((){});
   }
 
-  Future<void> setAttributes(id, orderDate, orderTime, cleanName, serviceName, newAddress) async{
+  Future<void> setId(id) async{
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('id', id);
-    pref.setString('orderDate', orderDate);
-    pref.setString('orderTime', orderTime);
-    pref.setString('cleanName', cleanName);
-    pref.getString('serviceName');
-    pref.getString('newAddress');
   }
 
 }

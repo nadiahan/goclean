@@ -56,243 +56,271 @@ class _ManagerMenuState extends State<ManagerMenu> {
         ],
       ),
 
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(top:10, left:10, right:10),
-          child: Column(
-            children: [
-              FutureBuilder(
-                  future: FlutterSession().get('tokenM'),
-                  builder: (context, AsyncSnapshot snapshot){
-                    return Text(snapshot.hasData ? snapshot.data : 'Loading...',
-                        style: TextStyle(color: Colors.white,
-                    ),);
-                  }),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue[50],
+            ),
+          ),
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: Colors.blue[50]
+              ),
+              child: Column(
                 children: [
-                  Text(
-                    "Menu",
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.blue[500],
-                        fontWeight: FontWeight.w700
+                  FutureBuilder(
+                    future: FlutterSession().get('tokenM'),
+                    builder: (context, AsyncSnapshot snapshot){
+                      return Text(snapshot.hasData ? snapshot.data : 'Loading...',
+                          style: TextStyle(color: Colors.white,
+                      ),);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Menu",
+                            style: TextStyle(
+                               fontSize: 30,
+                               color: Colors.blue[500],
+                               fontWeight: FontWeight.w700
+                            ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
                     ),
-                    textAlign: TextAlign.center,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 170,
+                        height: 170,
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderListPage()));
+                                    },
+                                    child: Image(
+                                      image: AssetImage('images/orderlist.png'),
+                                        width: 90,
+                                        height: 90,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderListPage()));
+                                  },
+                                  child: Text (
+                                    "Orders",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.blue[500],
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 170,
+                        height: 170,
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderHistoryPage()));
+                                    },
+                                    child: Image(
+                                      image: AssetImage('images/clock.png'),
+                                      width: 90,
+                                      height: 90,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderHistoryPage()));
+                                  },
+                                  child: Text(
+                                    "Order History",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.blue[500],
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 170,
+                        height: 170,
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ServiceMenu()));
+                                    },
+                                    child: Image(
+                                      image: AssetImage('images/service detail.png'),
+                                      width: 90,
+                                      height: 90,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> ServiceMenu()));
+                                  },
+                                  child: Text (
+                                    "Service Details",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.blue[500],
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 170,
+                        height: 170,
+                        child: Card(
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> LaundrettePage()));
+                                    },
+                                    child: Image(
+                                      image: AssetImage('images/laundrette.png'),
+                                      width: 90,
+                                      height: 90,
+                                    ),
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.push(context,MaterialPageRoute(builder: (context)=> LaundrettePage()));
+                                  },
+                                  child: Text(
+                                    "Your Laundrette",
+                                    style: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.blue[500],
+                                        fontWeight: FontWeight.w500
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 170,
+                          height: 170,
+                          child: Card(
+                            child: Container (
+                              padding: const EdgeInsets.all(10),
+                              child: Column (
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> ReviewsPage()));
+                                      },
+                                      child: Image(
+                                        image: AssetImage('images/review.png'),
+                                        width: 90,
+                                        height: 90,
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.push(context,MaterialPageRoute(builder: (context)=> ReviewsPage()));
+                                    },
+                                    child: Text (
+                                      "Customer Reviews",
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Colors.blue[500],
+                                          fontWeight: FontWeight.w500
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(top: 30),
+                          child: Text("All icons are from Flaticon", style: TextStyle(color: Colors.blueGrey)),
+                        ),
+                      ]
                   ),
                 ],
               ),
-              SizedBox(height: 15,),
-              Container(
-                //navigate to order page
-                width: 350,
-                height: 75,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.blue.withOpacity(0.8),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.centerRight
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-
-                child: Container (
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column (
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderListPage()));
-                        },
-                        child: Text (
-                          "Orders",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Container(
-                width: 350,
-                height: 75,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.blue.withOpacity(0.8),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.centerRight
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Container (
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column (
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>OrderHistoryPage()));
-                        },
-                        child: Text (
-                          "Order History",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Container(
-                width: 350,
-                height: 75,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.blue.withOpacity(0.8),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.centerRight
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Container (
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column (
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ServiceMenu()));
-                        },
-                        child: Text (
-                          "Service Details",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Container(
-                width: 350,
-                height: 75,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.blue.withOpacity(0.8),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.centerRight
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Container (
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column (
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>LaundrettePage()));
-                        },
-                        child: Text (
-                          "Your Laundrette",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 15,),
-              Container(
-                width: 350,
-                height: 75,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                        Colors.blue.withOpacity(0.8),
-                        Colors.lightBlueAccent.withOpacity(0.6),
-                      ],
-                      begin: Alignment.bottomLeft,
-                      end: Alignment.centerRight
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    bottomLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Container (
-                  padding: const EdgeInsets.only(top: 20),
-                  child: Column (
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ReviewsPage()));
-                        },
-                        child: Text (
-                          "Customer Reviews",
-                          style: TextStyle(
-                              fontSize: 30,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        ],
+      )
     );
   }
 }
