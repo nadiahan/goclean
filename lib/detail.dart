@@ -34,7 +34,13 @@ class _DetailState extends State<Detail>{
               child: new Column(
                 children: <Widget>[
                   new Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(10.0),
+                    child: new Text(
+                      "User ID : ${widget.list[widget.index]['id']}",
+                      style: new TextStyle(fontSize: 20.0, color: Colors.blue[600]),
+                    ),),
+                  new Padding(
+                    padding: const EdgeInsets.all(10.0),
                     child: new Text(
                       "Order ID : ${widget.list[widget.index]['orderID']}",
                     style: new TextStyle(fontSize: 20.0, color: Colors.blue[600]),
@@ -56,7 +62,7 @@ class _DetailState extends State<Detail>{
                   new Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: new Text(
-                      "Order Status : ${widget.list[widget.index]['orderStatus']}",
+                      "Clean Name : ${widget.list[widget.index]['cleanName']}",
                       style: new TextStyle(fontSize: 18.0),
                     ),
                   ),
@@ -70,7 +76,7 @@ class _DetailState extends State<Detail>{
                   new Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: new Text(
-                      "Clean Name : ${widget.list[widget.index]['cleanName']}",
+                      "Address : ${widget.list[widget.index]['newAddress']}",
                       style: new TextStyle(fontSize: 18.0),
                     ),
                   ),
@@ -78,6 +84,20 @@ class _DetailState extends State<Detail>{
                     padding: const EdgeInsets.all(10.0),
                     child: new Text(
                       "Material Name : ${widget.list[widget.index]['materialName']}",
+                      style: new TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  new Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: new Text(
+                      "Order Status : ${widget.list[widget.index]['orderStatus']}",
+                      style: new TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  new Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: new Text(
+                      "Status Time : ${widget.list[widget.index]['statusTime']}",
                       style: new TextStyle(fontSize: 18.0),
                     ),
                   ),
