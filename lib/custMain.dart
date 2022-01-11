@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_session/flutter_session.dart';
 import 'package:goclean/about_us_page.dart';
-import 'package:goclean/customer_view_status.dart';
-import 'package:goclean/view_my_order.dart';
+import 'package:goclean/customer_history_1.dart';
 import 'custLaundrette.dart';
-import 'cust_view_list.dart';
 import 'customer_order_page.dart';
 import 'userpage.dart';
 import 'main.dart';
+import 'customer_order_status_1.dart';
 
 class CMenuPage extends StatefulWidget {
   const CMenuPage({Key? key}) : super(key: key);
@@ -148,7 +147,7 @@ class _CMenuPage extends State<CMenuPage>{
                                       padding: const EdgeInsets.all(10.0),
                                       child: GestureDetector(
                                         onTap: () {
-                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewList()));
+                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
                                         },
                                         child: Image(
                                           image: AssetImage('images/delivery.png'),
@@ -159,7 +158,7 @@ class _CMenuPage extends State<CMenuPage>{
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewList()));
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerViewStatus()));
                                       },
                                       child: Text (
                                         "Order Status",
@@ -190,7 +189,7 @@ class _CMenuPage extends State<CMenuPage>{
                                       padding: const EdgeInsets.all(10.0),
                                       child: GestureDetector(
                                         onTap: (){
-                                          //Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderHistoryList()));
+                                          Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerHist()));
                                         },
                                         child: Image(
                                           image: AssetImage('images/clock.png'),
@@ -201,7 +200,7 @@ class _CMenuPage extends State<CMenuPage>{
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        //Navigator.push(context,MaterialPageRoute(builder: (context)=> OrderHistoryList()));
+                                        Navigator.push(context,MaterialPageRoute(builder: (context)=> CustomerHist()));
                                       },
                                       child: Text (
                                         "Order History",
