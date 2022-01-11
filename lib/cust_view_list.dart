@@ -68,7 +68,7 @@ class _CustomerViewListState extends State<CustomerViewList> with TickerProvider
 
       body: Column(
         children: [
-          Flexible(
+          Expanded(
             child: FutureBuilder(
               future: fetchUsers(),
               builder: (context, AsyncSnapshot snapshot) {
@@ -90,7 +90,7 @@ class _CustomerViewListState extends State<CustomerViewList> with TickerProvider
               },
             ),
           ),
-          Flexible(
+          Expanded(
             child: FutureBuilder(
                 future: getOrderlist(),
                 builder: (context, AsyncSnapshot snapshot) {

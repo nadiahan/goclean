@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goclean/customer_history_1.dart';
 import 'signup.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -45,7 +46,8 @@ class MyApp extends StatefulWidget {
 class _MyApp extends State<MyApp> {
 
   final _formKey = GlobalKey<FormState>();
-  late String txtemail, txtpassword, userId;
+  late String txtemail, txtpassword;
+  late String userId;
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
