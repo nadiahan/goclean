@@ -47,7 +47,7 @@ class _MyApp extends State<MyApp> {
 
   final _formKey = GlobalKey<FormState>();
   late String txtemail, txtpassword;
-  late String userId;
+  late String userId,userRole;
 
   TextEditingController email = new TextEditingController();
   TextEditingController pass = new TextEditingController();
@@ -62,8 +62,10 @@ class _MyApp extends State<MyApp> {
     var data = json.decode(response.body);
 
     userId = data[0]['id'];
+    userRole = data[0]['role'];
     setId(userId);
     setEmail(email.text);
+    setRole(userRole);
 
     if(data[0]['role']=="Customer"){
 
@@ -122,6 +124,10 @@ class _MyApp extends State<MyApp> {
   Future<void> setId(idValue) async{
     final SharedPreferences prefId = await SharedPreferences.getInstance();
     prefId.setString('idData', idValue);
+  }
+  Future<void> setRole(roleValue) async{
+    final SharedPreferences prefId = await SharedPreferences.getInstance();
+    prefId.setString('roleData', roleValue);
   }
 
   @override

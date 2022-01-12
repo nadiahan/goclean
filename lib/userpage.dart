@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:goclean/updateuserpage.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'custMain.dart';
+import 'dvrMain.dart';
+import 'mngrMain.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
@@ -12,7 +17,7 @@ class UserPage extends StatefulWidget {
 
 class _UserPage extends State<UserPage> {
 
-  late String idValue;
+  late String idValue,roleValue;
 
   Future<List> _getUserInfo() async {
     final response = await http.post(Uri.parse("http://goclean5yeoja.com/getuserinfo.php"), body:{
@@ -24,13 +29,24 @@ class _UserPage extends State<UserPage> {
   @override
   initState(){
     super.initState();
-    getId();
+    getData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton (
+            onPressed: () {
+              if(roleValue=="Customer")
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>CMenuPage()));
+              else if(roleValue=="Manager")
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>ManagerMenu()));
+              else
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>DMenuPage()));
+            },
+            icon: Icon(Icons.home_outlined),
+          ),
           centerTitle: true,
           title: Text('Go Clean',
             style: TextStyle(
@@ -49,10 +65,12 @@ class _UserPage extends State<UserPage> {
         )
     );
   }
-    void getId() async{
+    void getData() async{
     final SharedPreferences pref = await SharedPreferences.getInstance();
     idValue = pref.getString('idData');
+    roleValue = pref.getString('roleData');
     print(idValue);
+    print(roleValue);
     setState((){
 
     });
@@ -180,6 +198,32 @@ class UserInfo extends StatelessWidget{
                         style: TextStyle(fontSize: 18, color: Colors
                             .blueGrey[900]),
                       ),),),),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                            new MaterialPageRoute(
+                                builder: (BuildContext context)=> new UserProfileForm(list: list,index: i,)
+                            ),
+                        );
+                      },
+                      style:ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.blue[500]),
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18.0),
+                  )
+          )
+        ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                            "Edit profile",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                  ),
+                ),
               ],
             ),
           ),
