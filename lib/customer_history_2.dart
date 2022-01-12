@@ -36,6 +36,12 @@ class _OrderHist extends State<OrderHist>{
                       new Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: new Text(
+                          "Past Order",
+                          style: new TextStyle(fontSize: 30.0, color: Colors.blue[600]),
+                        ),),
+                      new Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: new Text(
                           "User ID : ${widget.list[widget.index]['id']}",
                           style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blue[600]),
                         ),),
@@ -105,7 +111,7 @@ class _OrderHist extends State<OrderHist>{
                         padding: const EdgeInsets.all(10.0),
                         child: new Text(
                           "Total Price : RM ${widget.list[widget.index]['totalPrice']}",
-                          style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold, color: Colors.green),
+                          style: new TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blue),
                         ),
                       ),
                       new Padding(
