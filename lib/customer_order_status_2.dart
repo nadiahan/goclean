@@ -23,98 +23,123 @@ class _OrderViewStatus extends State<OrderViewStatus>{
                 fontSize: 27,
                 fontWeight: FontWeight.w500
             ),),),
-        body: new Container(
-            padding:  const EdgeInsets.all(20.0),
+        body:
+
+
+        new Container(
+            padding:  const EdgeInsets.all(10.0),
             decoration: BoxDecoration(
-              color: Colors.blue[50],
+              color: Colors.grey,
             ),
             child: new Card(
                 child: Center(
                   child: new Column(
                     children: <Widget>[
+
                       new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "User ID : ${widget.list[widget.index]['id']}",
-                          style: new TextStyle(fontSize: 20.0, color: Colors.blue[600]),
-                        ),),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.fromLTRB(10.0,20.0,10.0,10.0),
                         child: new Text(
                           "Order ID : ${widget.list[widget.index]['orderID']}",
-                          style: new TextStyle(fontSize: 20.0, color: Colors.blue[600]),
+                          style: new TextStyle(fontWeight: FontWeight.bold,fontSize: 20.0, color: Colors.blue[600]),
                         ),),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Order Date : ${widget.list[widget.index]['orderDate']}",
-                          style: new TextStyle(fontSize: 18.0),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+
+                      Center (
+                        child: Text(
+                          widget.list[widget.index]['orderStatus'],
+                          style: TextStyle(
+                              fontSize: 28, color: Colors.green,fontWeight: FontWeight.bold),
                         ),
                       ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Order Time : ${widget.list[widget.index]['orderTime']}",
-                          style: new TextStyle(fontSize: 18.0),
+                      Center (
+                        child: Text(
+                          widget.list[widget.index]['statusTime'],
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.black26),
                         ),
                       ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Clean Name : ${widget.list[widget.index]['cleanName']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        height: 1,
+                        color: Colors.grey,
                       ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Service Name : ${widget.list[widget.index]['serviceName']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Order Date : " +  widget.list[widget.index]['orderDate'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Order Time : " +  widget.list[widget.index]['orderTime'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+
+
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Service Details : " +  widget.list[widget.index]['serviceName'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Cleaning Type : " +  widget.list[widget.index]['cleanName'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Materials : " +  widget.list[widget.index]['materialName'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+                      SizedBox(height: 15,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    New Address : " +  widget.list[widget.index]['newAddress'],
+                          style: TextStyle(
+                              fontSize: 18, color: Colors.blueGrey[900]),
+                        ),),
+                      SizedBox(height: 10,),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                        height: 1,
+                        color: Colors.grey,
                       ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Address : ${widget.list[widget.index]['newAddress']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Material Name : ${widget.list[widget.index]['materialName']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Order Status : ${widget.list[widget.index]['orderStatus']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Status Time : ${widget.list[widget.index]['statusTime']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: new Text(
-                          "Total Price : RM ${widget.list[widget.index]['totalPrice']}",
-                          style: new TextStyle(fontSize: 18.0),
-                        ),
-                      ),
-                      new Padding(
-                        padding: const EdgeInsets.only(top: 30.0),
-                      ),
+                      SizedBox(height: 10,),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "    Total Price : RM " +  widget.list[widget.index]['totalPrice'],
+                          style: TextStyle(
+                              fontSize: 20, color: Colors.blueGrey[900]),
+                        ),),
+
                     ],
                   ),
                 )
             )
         )
+
+
     );
   }
 }

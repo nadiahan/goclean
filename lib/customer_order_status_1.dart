@@ -80,8 +80,21 @@ class OrderViewStatusList extends StatelessWidget{
                 ),
               ),
               child: Card(
+                color: Colors.grey[200],
+                margin: EdgeInsets.only(left: 10.0, top: 15.0, right: 10.0),
                 child: new ListTile(
-                  title: new Text("Order : ${list[i]["orderID"]}"),
+                  contentPadding: EdgeInsets.only(left: 30.0, right: 20.0),
+                  title: Text(
+                    "Order #" + list[i]['orderID'],
+                    style: TextStyle(fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blueGrey[900]),),
+                  subtitle: Text(list[i]['orderDate'] + " / " + list[i]['orderTime'],
+                    style: TextStyle(fontSize: 16, color:Colors.blueGrey[900]),),
+                  trailing: GestureDetector(child: Icon(Icons.arrow_forward_ios, color: Colors.black),
+                    onTap: (){
+                      //Navigator.push(context, MaterialPageRoute(builder: (context) => CustomerViewStatus(orderlist: orderlist, index: index,),),);
+                    },),
                 ),
               ),
             ),
