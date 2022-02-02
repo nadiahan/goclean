@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:get/get.dart';
 import 'view_laundrette.dart';
 import 'package:goclean/laundrette-api.dart';
-import 'laundrette.dart';
+//import 'laundrette.dart';
 import 'package:http/http.dart' as http;
 import 'laundretteController.dart';
 import 'view_laundrette.dart';
