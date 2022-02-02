@@ -110,6 +110,7 @@ class _UpdatePriceState extends State<UpdatePrice> {
                                 onSaved: (value){
                                   txttotal = value!;
                                 },
+                                validator: validatePrice,
                               ),
                               SizedBox(height:20,),
                             ],
@@ -169,4 +170,14 @@ class _UpdatePriceState extends State<UpdatePrice> {
       ),
     );
   }
+
+  String? validatePrice(String? total) {
+    if(total!.isEmpty){
+      return "Do not leave total price empty";
+    }
+    else{
+      return null;
+    }
+  }
+
 }

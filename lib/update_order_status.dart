@@ -113,6 +113,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                                 onSaved: (value){
                                   txtstatus = value!;
                                 },
+                                validator: validateStatus,
                               ),
                               TextFormField(
                                 controller: time,
@@ -122,6 +123,7 @@ class _UpdateOrderState extends State<UpdateOrder> {
                                 onSaved: (value){
                                   txttime = value!;
                                 },
+                                validator: validateTime,
                               ),
                               SizedBox(height:20,),
                             ],
@@ -181,4 +183,23 @@ class _UpdateOrderState extends State<UpdateOrder> {
       ),
     );
   }
+
+  String? validateStatus(String? status) {
+    if(status!.isEmpty){
+      return "Do not leave order status empty";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validateTime(String? time) {
+    if(time!.isEmpty){
+      return "Do not leave order status change time empty";
+    }
+    else{
+      return null;
+    }
+  }
+
 }

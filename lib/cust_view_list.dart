@@ -17,6 +17,7 @@ import 'customer_order_page.dart';
 
 class CustomerViewList extends StatefulWidget{
 
+
   @override
   _CustomerViewListState createState() => _CustomerViewListState();
 }
@@ -40,11 +41,13 @@ class _CustomerViewListState extends State<CustomerViewList> with TickerProvider
     }
   }
 
+
   @override
   void initState() {
     super.initState();
     getOrderlist();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +87,8 @@ class _CustomerViewListState extends State<CustomerViewList> with TickerProvider
                           id = user.id;
                           idController = new TextEditingController(text: id);
                         }
-                        return Text("Next", style: TextStyle(fontSize:1, color:Colors.white));}
+                        return Text("Next", style: TextStyle(fontSize:1, color:Colors.white));
+                      }
                   );
                 }return CircularProgressIndicator();
               },

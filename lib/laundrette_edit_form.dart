@@ -127,6 +127,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtname = value!;
                                 },
+                                validator: validateName,
                               ),
                               TextFormField(
                                 controller: email,
@@ -135,7 +136,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtemail = value!;
                                 },
-                                //validator: validateEmail,
+                                validator: validateEmail,
                               ),
                               TextFormField(
                                 controller: phonenum,
@@ -144,6 +145,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtphone = value!;
                                 },
+                                validator: validatePhone,
                               ),
                               TextFormField(
                                 controller: address,
@@ -152,6 +154,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtaddress = value!;
                                 },
+                                validator: validateAddress,
                               ),
                               TextFormField(
                                 controller: busday,
@@ -160,6 +163,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtbusday = value!;
                                 },
+                                validator: validateBusDay,
                               ),
                               TextFormField(
                                 controller: bushour,
@@ -168,6 +172,7 @@ class _LaundretteFormState extends State<LaundretteForm> {
                                 onSaved: (value){
                                   txtbushour = value!;
                                 },
+                                validator: validateBusHour,
                               ),
                               SizedBox(height:20,),
                             ],
@@ -227,4 +232,59 @@ class _LaundretteFormState extends State<LaundretteForm> {
       ),
     );
   }
+
+  String? validateName(String? name) {
+    if(name!.isEmpty){
+      return "Enter laundry shop's name";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validateEmail(String? email) {
+    if(email!.isEmpty){
+      return "Enter laundry shop's email";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validatePhone(String? phonenum) {
+    if(phonenum!.isEmpty){
+      return "Enter laundry shop's phone number";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validateAddress(String? address) {
+    if(address!.isEmpty){
+      return "Enter laundry shop's address";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validateBusDay(String? busday) {
+    if(busday!.isEmpty){
+      return "Enter laundry shop's business day";
+    }
+    else{
+      return null;
+    }
+  }
+
+  String? validateBusHour(String? bushour) {
+    if(bushour!.isEmpty){
+      return "Enter laundry shop's business hour";
+    }
+    else{
+      return null;
+    }
+  }
+
 }
